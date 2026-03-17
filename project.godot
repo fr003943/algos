@@ -15,29 +15,6 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 run/main_scene="res://scenes/main.tscn"
 
-[input]
-
-move_forward={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"physical_keycode":87,"keycode":0,"script":null)
-]
-}
-move_back={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"physical_keycode":83,"keycode":0,"script":null)
-]
-}
-move_left={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"physical_keycode":65,"keycode":0,"script":null)
-]
-}
-move_right={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"physical_keycode":68,"keycode":0,"script":null)
-]
-}
-
 [physics]
 
 3d/physics_engine="Jolt Physics"

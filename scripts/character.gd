@@ -1,16 +1,18 @@
 extends CharacterBody3D
 
-const SPEED := 5.0
+var speed: float = 5.0
+var gravity: float = 30.0
 
 func _physics_process(delta: float) -> void:
-	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-		look_at(global_position + direction, Vector3.UP)
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-	velocity.y -= 30.0 * delta  # gravity
+	# Apply gravity only; movement and rotation are controlled by external scripts.
+	velocity.y -= gravity * delta
 	move_and_slide()
+
+func set_horizontal_velocity(dir: Vector2) -> void:
+	var direction_3d := (transform.basis * Vector3(dir.x, 0.0, dir.y)).normalized()
+	velocity.x = direction_3d.x * speed
+	velocity.z = direction_3d.z * speed
+
+func stop_horizontal_velocity() -> void:
+	velocity.x = 0.0
+	velocity.z = 0.0
